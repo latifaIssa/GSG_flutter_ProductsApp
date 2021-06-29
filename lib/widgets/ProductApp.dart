@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:gsg_my_product_app/widgets/favouritePage.dart';
 import 'HomePage.dart';
 
 class ProductApp extends StatefulWidget {
@@ -23,9 +24,15 @@ class _ProductAppState extends State<ProductApp> with SingleTickerProviderStateM
 
     return Scaffold(
         appBar: AppBar(
-          title: Text('TODO App'),
+          title: Text('Products App'),
           bottom: TabBar(
+
             controller: tabController,
+            onTap: (tapedIndex){
+            this.index = tapedIndex;
+            tabController.animateTo(tapedIndex);
+            setState((){});
+          },
             tabs: [
             Tab(
               icon: Icon(Icons.home),
@@ -47,7 +54,7 @@ class _ProductAppState extends State<ProductApp> with SingleTickerProviderStateM
           physics: NeverScrollableScrollPhysics(),
           children: [
           Center(child: HomePage(),),
-          Center(child: Text('favourite'),),
+          Center(child: FavouritePage(),),
           Center(child: Text('profile'),)
         ]),
         bottomNavigationBar: BottomNavigationBar(
